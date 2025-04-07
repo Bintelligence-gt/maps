@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enlaces con Imágenes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1526403228165-82f5fcf4f8fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #0A2A49;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 15px 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .image-button {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .image-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <h1>Selecciona tu opción</h1>
+  <div class="container">
+    <a class="image-button" href="https://bintelligence-gt.github.io/creador_plantilla/">
+      <img src="https://via.placeholder.com/200x200/3D8F98/ffffff?text=Plantilla" alt="Plantilla">
+    </a>
+    <a class="image-button" href="https://efficaex.com/">
+      <img src="https://via.placeholder.com/200x200/0A2A49/ffffff?text=Efficaex" alt="Efficaex">
+    </a>
+    <a class="image-button" href="https://www.cargoexpreso.com/">
+      <img src="https://via.placeholder.com/200x200/28798C/ffffff?text=Cargo+Expreso" alt="Cargo Expreso">
+    </a>
+  </div>
+</body>
+</html>
