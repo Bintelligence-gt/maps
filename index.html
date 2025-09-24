@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa de Coordenadas</title>
+  <title>Mapa de Coordenadas Dinámicas</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <style>
     html, body { height: 100%; margin: 0; padding: 0; }
@@ -15,30 +15,55 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
-    const puntos = [
-      [14.917459, -91.443257],
-      [14.379325, -90.287373],
-      [14.497494, -89.649169],
-      [14.13708,  -90.009023],
-      [14.9627361, -90.4902153]
-    ];
+    // Función para obtener parámetros de la URL
+    function getCoordsFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const coordsParam = params.get("coords");
+      if (!coordsParam) return null;
 
+      // Formato esperado: lat,lng;lat,lng;lat,lng
+      return coordsParam.split(";").map(pair => {
+        const [lat, lng] = pair.split(",").map(Number);
+        return [lat, lng];
+      });
+    }
+
+    // Obtener puntos de la URL
+    let puntos = getCoordsFromURL();
+
+    // Si no hay parámetros, usar puntos de ejemplo
+    if (!puntos || puntos.length === 0) {
+      puntos = [
+        [14.917459, -91.443257],
+        [14.379325, -90.287373],
+        [14.497494, -89.649169],
+        [14.13708,  -90.009023],
+        [14.9627361, -90.4902153]
+      ];
+    }
+
+    // Crear el mapa
     const map = L.map('map').setView(puntos[0], 8);
 
+    // Capa base
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors',
       maxZoom: 18
     }).addTo(map);
 
+    // Agregar marcadores
     const markers = puntos.map((p, i) => 
       L.marker(p).bindPopup(`<b>Punto ${i + 1}</b><br>Lat: ${p[0]}<br>Lng: ${p[1]}`)
     );
 
     markers.forEach(m => m.addTo(map));
 
+    // Ajustar zoom
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds());
   </script>
 </body>
 </html>
+
+
 
